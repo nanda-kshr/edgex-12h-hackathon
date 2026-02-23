@@ -22,10 +22,12 @@ export class EnergyService {
         const offset = setting?.value || 0;
 
         // 2. Apply Offset
-        const power = data.power + offset;
+        const power = data.power;
 
         // 3. Set timestamp if missing
         const timestamp = data.timestamp ? new Date(data.timestamp) : new Date();
+
+        console.log(`Injested Data ${power} at ${timestamp.toISOString()}`);
 
         // 4. Store Raw Data
         await this.readingModel.create({
